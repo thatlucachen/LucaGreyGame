@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Cinemachine;
 
-public class TestingPlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     // Creating variables for game components 
     [SerializeField] private Rigidbody2D rigidBody;
