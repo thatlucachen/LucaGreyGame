@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseballMovementLeft : MonoBehaviour
+public class BaseballMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] float movementAmount = 0;
