@@ -1,3 +1,5 @@
+// This script controls the movement of baseballs in the game.
+
 using UnityEngine;
 
 public class BaseballMovement : MonoBehaviour
