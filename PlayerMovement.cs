@@ -1,4 +1,5 @@
-// This script is attached to the player and allows the player to run, jump, and dash in the game.
+// This script is attached to the player and allows the player to run, jump, and dash in the game. 
+// The script also controls the player's interactions with game mechanics and other game objects.
 
 using System.Collections;
 using UnityEngine;
