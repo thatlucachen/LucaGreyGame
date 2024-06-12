@@ -1,3 +1,5 @@
+// This script controls the movement of basketballs in the game.
+
 using UnityEngine;
 
 public class BasketballMovement : MonoBehaviour
