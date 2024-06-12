@@ -1,3 +1,5 @@
+// This script controls the jump pad animations in the game.
+
 using System.Collections;
 using UnityEngine;
 
