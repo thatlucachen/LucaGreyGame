@@ -1,3 +1,5 @@
+// This script is attached to the player and allows the player to run, jump, and dash in the game.
+
 using System.Collections;
 using UnityEngine;
 using Cinemachine;
