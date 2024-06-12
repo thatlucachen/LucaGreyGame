@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Death timer
-    float deathTimer = 0.2f;
+    float deathTimer = 0.05f;
     IEnumerator DeathTimer()
     {
         yield return new WaitForSeconds(deathTimer);
@@ -180,6 +180,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position = currentRespawnPoint;
             StartCoroutine(DeathTimer());
         }
+
+        // Jump pad code
         if (other.gameObject.CompareTag("Jump Pad Up") || other.gameObject.CompareTag("Jump Pad Left") || other.gameObject.CompareTag("Jump Pad Right"))
         {
             isJumping = true;
@@ -189,6 +191,8 @@ public class PlayerMovement : MonoBehaviour
             else if (other.gameObject.CompareTag("Jump Pad Left")) { rigidBody.velocity = new Vector2(-jumpPadHorizontalBoost, rigidBody.velocity.y); }
             else if (other.gameObject.CompareTag("Jump Pad Right")) { rigidBody.velocity = new Vector2(jumpPadHorizontalBoost, rigidBody.velocity.y); }
         }
+
+        // Didn't use the code below in the finalized game, but it allows the player to replenish their dash if they touch a dash crystal
         if (other.gameObject.CompareTag("Dash Crystal"))
         {
             if (!canDash)
@@ -199,8 +203,9 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(DashCooldownBypass());
                 StartCoroutine(CollisionDashCrystalTimer(other));
             }
-
         }
+
+        // The player can no longer move once they collect the medal and beat the game
         if (other.gameObject.CompareTag("Medal"))
         {
             other.gameObject.SetActive(false);
@@ -213,11 +218,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Declaring variables used for the jump pad
     float jumpPadVerticalBoost = 15;
     float jumpPadHorizontalBoost = 45;
     float jumpPadHorizontalUpwardsBoost = 5;
     bool onJumpPad = false;
+    
     // Executes once when the player enters a collider
+    // The code below is a repeat of the code in the OnCollisionEnter2D function. Since Unity treats trigger colliders and non-trigger colliders differently, the code must be rewritten twice.
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Send the player back to the start of the room if they touch an obstacle or border
@@ -230,6 +238,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = currentRespawnPoint;
         }
 
+        // Jump pad code
         if (other.gameObject.CompareTag("Jump Pad Up") || other.gameObject.CompareTag("Jump Pad Left") || other.gameObject.CompareTag("Jump Pad Right"))
         {
             isJumping = true;
@@ -239,6 +248,8 @@ public class PlayerMovement : MonoBehaviour
             else if (other.gameObject.CompareTag("Jump Pad Left")) { rigidBody.velocity = new Vector2(-jumpPadHorizontalBoost, rigidBody.velocity.y + jumpPadHorizontalUpwardsBoost); }
             else if (other.gameObject.CompareTag("Jump Pad Right")) { rigidBody.velocity = new Vector2(jumpPadHorizontalBoost, rigidBody.velocity.y + jumpPadHorizontalUpwardsBoost); }
         }
+
+        // Didn't use the code below in the finalized game, but it allows the player to replenish their dash if they touch a dash crystal
         if (other.gameObject.CompareTag("Dash Crystal"))
         {
             if (!canDash)
@@ -250,6 +261,8 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(ColliderDashCrystalTimer(other));
             }
         }
+
+        // The player can no longer move once they collect the medal and beat the game
         if (other.CompareTag("Medal"))
         {
             other.gameObject.SetActive(false);
@@ -263,7 +276,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Dash crystals re-appear 5 seconds after they were last used
+    // Dash crystals re-appear 5 seconds after they were last used (Didn't add dash crystals into the finalized game)
+    // Collision2D and Collider2D are different, so the code must be rewritten twice here
     float dashCrystalRespawnTime = 5;
     IEnumerator ColliderDashCrystalTimer(Collider2D other)
     {
@@ -485,6 +499,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Controls the animation variables created in the Unity animator
     public void AnimationControl()
     {
         // Determines if the player is running or idle to play the correct animation
