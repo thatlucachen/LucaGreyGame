@@ -1,3 +1,5 @@
+// This script controls the camera in the game, allowing it to track what room the player is in and go to that room.
+
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
